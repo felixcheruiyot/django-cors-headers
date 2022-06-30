@@ -168,7 +168,7 @@ class CorsMiddleware(MiddlewareMixin):
 
     def origin_found_in_white_lists(self, origin: str, url: ParseResult) -> bool:
         return (
-            (origin == "null" and origin in conf.CORS_ALLOWED_ORIGINS)
+            (origin != "null" and origin in conf.CORS_ALLOWED_ORIGINS)
             or self._url_in_whitelist(url)
             or self.regex_domain_match(origin)
         )
